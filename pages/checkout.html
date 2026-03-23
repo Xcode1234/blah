@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Checkout - Velvet Vogue">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+    <title>Checkout - Velvet Vogue</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('velvet-theme');
+            let theme = 'light';
+            
+            if (savedTheme === 'dark' || savedTheme === 'light') {
+                theme = savedTheme;
+            } else if (savedTheme === 'auto' || !savedTheme) {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/country-state-city@3.2.1/lib/index.js"></script>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="../index.html" class="logo">Velvet <span>Vogue</span></a>
+                
+                <!-- Hamburger Menu Button (Mobile Only) -->
+                <button id="hamburger-menu" aria-label="Toggle menu">
+                    <span></span>
+                </button>
+                
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/pages/shop.html">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-icons">
+                    <button class="icon-btn" id="search-btn" title="Search">
+                        🔍
+                    </button>
+                    <button class="icon-btn" id="account-btn" title="My Account">
+                        👤
+                    </button>
+                    <button class="icon-btn" id="cart-btn" title="Shopping Cart">
+                        🛒
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay - Glass Pane (Outside Navigation) -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu Drawer - Navigation Pane (Outside Navigation) -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="/pages/shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 2rem;">
+        <div class="breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="/pages/cart.html">Cart</a>
+            <span>/</span>
+            <span>Checkout</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" style="padding: 2rem 0;">
+        <h1 style="margin-bottom: 2rem;">Checkout</h1>
+
+        <div style="display: grid; grid-template-columns: 1fr 350px; gap: 2rem;">
+            <!-- Checkout Form -->
+            <div>
+                <!-- Shipping Address Section -->
+                <div style="background: var(--light-bg); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <h2 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Shipping Address</h2>
+                    
+                    <!-- Saved Addresses Selection -->
+                    <div id="saved-addresses-section" style="margin-bottom: 2rem; display: none;">
+                        <div class="form-group">
+                            <label class="form-label">Or Use a Saved Address</label>
+                            <select class="form-control" id="saved-addresses-select" onchange="loadSavedAddress()">
+                                <option value="">Select a saved address</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-outline" onclick="toggleAddNewAddress()" style="width: 100%; margin-top: 0.5rem;">Add New Address Instead</button>
+                    </div>
+
+                    <!-- Add New Address Form -->
+                    <div id="new-address-form" style="margin-bottom: 1rem;">
+                        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                            <input type="checkbox" id="new-address-checkbox" checked onchange="toggleAddNewAddress()">
+                            <label for="new-address-checkbox" style="margin-left: 0.5rem; cursor: pointer;">Add a New Address</label>
+                        </div>
+                    </div>
+                    
+                    <div id="shipping-form" style="display: block;">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="shipping-name" placeholder="John Doe">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: flex-start; padding-bottom: 1.5rem;">
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="shipping-email" placeholder="john@example.com">
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-control" id="shipping-phone" placeholder="+1 (555) 123-4567">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Street Address</label>
+                            <input type="text" class="form-control" id="shipping-street" placeholder="123 Fashion Street">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Apartment, Suite, etc. (Optional)</label>
+                            <input type="text" class="form-control" id="shipping-apartment" placeholder="Apt 4B">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: flex-start; padding-bottom: 1.5rem;">
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">Country</label>
+                                <select class="form-control" id="shipping-country" onchange="updateShippingStates()">
+                                    <option value="">Select Country</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">State/Province</label>
+                                <select class="form-control" id="shipping-state">
+                                    <option value="">Select State</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: flex-start; padding-bottom: 1.5rem;">
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" id="shipping-city" placeholder="Style City">
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">Postal Code</label>
+                                <input type="text" class="form-control" id="shipping-postal" placeholder="12345">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Billing Address Section -->
+                <div style="background: var(--light-bg); padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
+                        <input type="checkbox" id="billing-same-as-shipping" checked>
+                        <label for="billing-same-as-shipping" style="margin-left: 0.5rem; cursor: pointer;">Billing address same as shipping</label>
+                    </div>
+
+                    <div id="billing-form" style="display: none;">
+                        <h2 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Billing Address</h2>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="billing-name" placeholder="John Doe">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Street Address</label>
+                            <input type="text" class="form-control" id="billing-street" placeholder="123 Fashion Street">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Apartment, Suite, etc. (Optional)</label>
+                            <input type="text" class="form-control" id="billing-apartment" placeholder="Apt 4B">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: flex-start; padding-bottom: 1.5rem;">
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">Country</label>
+                                <select class="form-control" id="billing-country" onchange="updateBillingStates()">
+                                    <option value="">Select Country</option>
+                                </select>
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">State/Province</label>
+                                <select class="form-control" id="billing-state">
+                                    <option value="">Select State</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: flex-start; padding-bottom: 1.5rem;">
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" id="billing-city" placeholder="Style City">
+                            </div>
+                            <div class="form-group" style="margin: 0;">
+                                <label class="form-label">Postal Code</label>
+                                <input type="text" class="form-control" id="billing-postal" placeholder="12345">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Section -->
+                <div style="background: var(--light-bg); padding: 2rem; border-radius: 8px;">
+                    <h2 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Payment Method</h2>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Card Holder Name</label>
+                        <input type="text" class="form-control" id="card-holder" placeholder="John Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Card Number</label>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" oninput="detectCardType()">
+                            <div id="card-type-icon" style="font-size: 2rem; min-width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;">
+                            </div>
+                        </div>
+                        <small id="card-validation-message" style="color: var(--text-light); margin-top: 0.5rem; min-height: 1.2em;"></small>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: flex-start; padding-bottom: 1.5rem;">
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group" style="margin: 0;">
+                            <label class="form-label">CVV</label>
+                            <input type="text" class="form-control" id="card-cvv" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary Sidebar -->
+            <div>
+                <div style="background: var(--light-bg); padding: 1.5rem; border-radius: 8px; position: sticky; top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem;">Order Summary</h3>
+                    
+                    <div id="checkout-items-summary" style="margin-bottom: 1.5rem; max-height: 300px; overflow-y: auto;">
+                        <!-- Items will be loaded here -->
+                    </div>
+
+                    <div style="border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Subtotal</span>
+                            <span id="checkout-subtotal">$0.00</span>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Shipping</span>
+                            <span id="checkout-shipping">$0.00</span>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Tax (10%)</span>
+                            <span id="checkout-tax">$0.00</span>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; color: var(--success-color);">
+                            <span>Discount</span>
+                            <span id="checkout-discount">-$0.00</span>
+                        </div>
+
+                        <div style="border-top: 1px solid var(--border-color); padding-top: 1rem; display: flex; justify-content: space-between; font-weight: bold; font-size: 1.125rem; margin-bottom: 1.5rem;">
+                            <span>Total</span>
+                            <span id="checkout-total">$0.00</span>
+                        </div>
+
+                        <!-- Coupon Code -->
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label class="form-label">Coupon Code</label>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <input type="text" class="form-control" placeholder="Enter code" id="checkout-coupon-code">
+                                <button class="btn btn-primary" onclick="applyCheckoutCoupon()">Apply</button>
+                            </div>
+                            <small style="color: var(--text-light);">Try: VELVET25</small>
+                        </div>
+
+                        <button class="btn btn-primary btn-block" onclick="placeOrder()" style="margin-bottom: 0.5rem;">Place Order</button>
+                        <a href="/pages/cart.html" class="btn btn-outline btn-block">Return to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Velvet Vogue</h3>
+                    <p>We're dedicated to providing premium clothing and accessories that help you express your unique style and identity.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="LinkedIn">in</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/pages/shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns & Exchanges</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>📧 <a href="mailto:info@velvetvogue.com">info@velvetvogue.com</a></li>
+                        <li>📱 1-800-VELVET-1</li>
+                        <li>📍 123 Fashion Street, Style City, SC 12345</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Velvet Vogue. All rights reserved. | Designed for fashion-forward young adults</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        let checkoutAppliedCoupon = null;
+        let checkoutCouponDiscount = 0;
+        let savedAddresses = [];
+
+        // Initialize checkout page
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Load countries for both dropdowns
+            await loadCountriesForCheckout();
+            
+            // Load saved addresses
+            loadSavedAddressesForCheckout();
+            
+            // Pre-fill user info if logged in
+            if (currentUser) {
+                document.getElementById('shipping-name').value = `${currentUser.first_name} ${currentUser.last_name}`.trim();
+                document.getElementById('shipping-email').value = currentUser.email || '';
+                document.getElementById('shipping-phone').value = currentUser.phone || '';
+                document.getElementById('card-holder').value = `${currentUser.first_name} ${currentUser.last_name}`.trim();
+            }
+            
+            // Render order summary
+            renderCheckoutSummary();
+            
+            // Setup billing address toggle
+            document.getElementById('billing-same-as-shipping').addEventListener('change', function() {
+                document.getElementById('billing-form').style.display = this.checked ? 'none' : 'block';
+            });
+        });
+
+        function loadSavedAddressesForCheckout() {
+            const storageKey = getUserStorageKey('addresses');
+            const addressesData = localStorage.getItem(storageKey);
+            
+            if (addressesData) {
+                try {
+                    savedAddresses = JSON.parse(addressesData);
+                    
+                    if (savedAddresses.length > 0) {
+                        // Show saved addresses section
+                        document.getElementById('saved-addresses-section').style.display = 'block';
+                        
+                        // Populate saved addresses dropdown
+                        const select = document.getElementById('saved-addresses-select');
+                        savedAddresses.forEach((address, index) => {
+                            const option = document.createElement('option');
+                            option.value = index;
+                            option.textContent = `${address.street}, ${address.city}, ${address.state}`;
+                            select.appendChild(option);
+                        });
+                        
+                        // Hide new address form by default if there are saved addresses
+                        document.getElementById('new-address-form').style.display = 'none';
+                        document.getElementById('shipping-form').style.display = 'none';
+                    }
+                } catch (e) {
+                    console.error('Failed to load saved addresses:', e);
+                }
+            }
+        }
+
+        function loadSavedAddress() {
+            const select = document.getElementById('saved-addresses-select');
+            const index = select.value;
+            
+            if (index === '') {
+                // No address selected - clear form and show new address option
+                document.getElementById('shipping-form').style.display = 'block';
+                document.getElementById('new-address-form').style.display = 'block';
+                document.getElementById('new-address-checkbox').checked = true;
+                
+                // Clear form but keep user data
+                if (currentUser) {
+                    document.getElementById('shipping-name').value = `${currentUser.first_name} ${currentUser.last_name}`.trim();
+                    document.getElementById('shipping-email').value = currentUser.email || '';
+                    document.getElementById('shipping-phone').value = currentUser.phone || '';
+                }
+                document.getElementById('shipping-street').value = '';
+                document.getElementById('shipping-apartment').value = '';
+                document.getElementById('shipping-city').value = '';
+                document.getElementById('shipping-postal').value = '';
+                document.getElementById('shipping-country').value = '';
+                document.getElementById('shipping-state').value = '';
+                return;
+            }
+            
+            const address = savedAddresses[index];
+            if (address) {
+                // Show the form when an address is selected
+                document.getElementById('shipping-form').style.display = 'block';
+                document.getElementById('new-address-form').style.display = 'none';
+                document.getElementById('new-address-checkbox').checked = false;
+                
+                // Fill in the form fields with saved address data
+                // Use saved data for name, but prefer current user data for email/phone if available
+                document.getElementById('shipping-name').value = address.name || (currentUser ? `${currentUser.first_name} ${currentUser.last_name}`.trim() : '');
+                document.getElementById('shipping-email').value = (currentUser ? currentUser.email : address.email) || '';
+                document.getElementById('shipping-phone').value = (currentUser ? currentUser.phone : address.phone) || '';
+                document.getElementById('shipping-street').value = address.street || '';
+                document.getElementById('shipping-apartment').value = address.apartment || '';
+                document.getElementById('shipping-city').value = address.city || '';
+                document.getElementById('shipping-postal').value = address.postal || '';
+                
+                // Set country and state
+                const countrySelect = document.getElementById('shipping-country');
+                const stateSelect = document.getElementById('shipping-state');
+                
+                // Find country by name
+                try {
+                    const countries = window.csc.getAllCountries();
+                    const matchedCountry = countries.find(c => c.name === address.country);
+                    if (matchedCountry) {
+                        countrySelect.value = matchedCountry.id;
+                        updateShippingStates();
+                        
+                        // Set state after countries are loaded
+                        setTimeout(() => {
+                            const states = window.csc.getStatesOfCountry(matchedCountry.id);
+                            const matchedState = states.find(s => s.name === address.state);
+                            if (matchedState) {
+                                stateSelect.value = matchedState.id;
+                            }
+                        }, 100);
+                    }
+                } catch (e) {
+                    console.error('Failed to load country/state:', e);
+                }
+            }
+        }
+
+        function toggleAddNewAddress() {
+            const checkbox = document.getElementById('new-address-checkbox');
+            const select = document.getElementById('saved-addresses-select');
+            const newAddressForm = document.getElementById('new-address-form');
+            const shippingForm = document.getElementById('shipping-form');
+            
+            if (checkbox.checked) {
+                // Show new address form
+                newAddressForm.style.display = 'block';
+                shippingForm.style.display = 'block';
+                select.value = '';
+            } else {
+                // Hide new address form, show saved addresses
+                newAddressForm.style.display = 'none';
+                shippingForm.style.display = 'none';
+            }
+        }
+
+        async function loadCountriesForCheckout() {
+            try {
+                const countries = window.csc.getAllCountries();
+                const shippingCountrySelect = document.getElementById('shipping-country');
+                const billingCountrySelect = document.getElementById('billing-country');
+                
+                countries.forEach(country => {
+                    const option1 = document.createElement('option');
+                    option1.value = country.id;
+                    option1.textContent = country.name;
+                    shippingCountrySelect.appendChild(option1);
+                    
+                    const option2 = document.createElement('option');
+                    option2.value = country.id;
+                    option2.textContent = country.name;
+                    billingCountrySelect.appendChild(option2);
+                });
+            } catch (e) {
+                console.error('Failed to load countries:', e);
+            }
+        }
+
+        function updateShippingStates() {
+            const countryId = document.getElementById('shipping-country').value;
+            const stateSelect = document.getElementById('shipping-state');
+            stateSelect.innerHTML = '<option value="">Select State</option>';
+            
+            if (countryId) {
+                try {
+                    const states = window.csc.getStatesOfCountry(countryId);
+                    states.forEach(state => {
+                        const option = document.createElement('option');
+                        option.value = state.id;
+                        option.textContent = state.name;
+                        stateSelect.appendChild(option);
+                    });
+                } catch (e) {
+                    console.error('Failed to load states:', e);
+                }
+            }
+        }
+
+        function updateBillingStates() {
+            const countryId = document.getElementById('billing-country').value;
+            const stateSelect = document.getElementById('billing-state');
+            stateSelect.innerHTML = '<option value="">Select State</option>';
+            
+            if (countryId) {
+                try {
+                    const states = window.csc.getStatesOfCountry(countryId);
+                    states.forEach(state => {
+                        const option = document.createElement('option');
+                        option.value = state.id;
+                        option.textContent = state.name;
+                        stateSelect.appendChild(option);
+                    });
+                } catch (e) {
+                    console.error('Failed to load states:', e);
+                }
+            }
+        }
+
+        function renderCheckoutSummary() {
+            const itemsContainer = document.getElementById('checkout-items-summary');
+            itemsContainer.innerHTML = cart.map(item => `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                    <div>
+                        <div style="font-weight: 500;">${item.name}</div>
+                        <small style="color: var(--text-light);">Qty: ${item.quantity}</small>
+                    </div>
+                    <div style="text-align: right; font-weight: 500;">
+                        ${typeof formatPrice === 'function' ? formatPrice(parseFloat(item.price) * item.quantity) : `$${(parseFloat(item.price) * item.quantity).toFixed(2)}`}
+                    </div>
+                </div>
+            `).join('');
+            
+            updateCheckoutTotals();
+        }
+
+        function applyCheckoutCoupon() {
+            const couponCode = document.getElementById('checkout-coupon-code').value.toUpperCase().trim();
+            
+            if (!couponCode) {
+                alert('Please enter a coupon code');
+                return;
+            }
+            
+            // Check if coupon exists in COUPON_CODES
+            if (COUPON_CODES[couponCode]) {
+                checkoutAppliedCoupon = couponCode;
+                const coupon = COUPON_CODES[couponCode];
+                const subtotal = cart.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
+                checkoutCouponDiscount = subtotal * coupon.discount;
+                
+                showNotification(`Coupon applied! ${coupon.label}`, 'success');
+                updateCheckoutTotals();
+            } else {
+                showNotification('Invalid coupon code', 'error');
+                checkoutAppliedCoupon = null;
+                checkoutCouponDiscount = 0;
+            }
+        }
+
+        function updateCheckoutTotals() {
+            const subtotal = cart.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
+            const tax = subtotal * 0.1;
+            const shipping = 10;
+            const discount = checkoutCouponDiscount;
+            const total = subtotal + tax + shipping - discount;
+
+            const displayPrice = (amount) => {
+                return typeof formatPrice === 'function' ? formatPrice(amount) : `$${amount.toFixed(2)}`;
+            };
+            
+            document.getElementById('checkout-subtotal').textContent = displayPrice(subtotal);
+            document.getElementById('checkout-shipping').textContent = displayPrice(shipping);
+            document.getElementById('checkout-tax').textContent = displayPrice(tax);
+            document.getElementById('checkout-discount').textContent = `-${displayPrice(discount)}`;
+            document.getElementById('checkout-total').textContent = displayPrice(total);
+        }
+
+        function placeOrder() {
+            // Validation
+            if (!currentUser) {
+                alert('You must be logged in to place an order');
+                return;
+            }
+            
+            if (!document.getElementById('shipping-name').value.trim()) {
+                alert('Please enter your full name');
+                return;
+            }
+            
+            if (!document.getElementById('shipping-street').value.trim()) {
+                alert('Please enter shipping street address');
+                return;
+            }
+            
+            if (!document.getElementById('shipping-country').value) {
+                alert('Please select shipping country');
+                return;
+            }
+            
+            if (!document.getElementById('shipping-city').value.trim()) {
+                alert('Please enter shipping city');
+                return;
+            }
+            
+            if (!document.getElementById('card-number').value.trim()) {
+                alert('Please enter card number');
+                return;
+            }
+            
+            // Get cart items
+            if (cart.length === 0) {
+                alert('Your cart is empty');
+                return;
+            }
+            
+            // Calculate order totals
+            const subtotalAmount = cart.reduce((sum, item) => sum + (parseFloat(item.price) * item.quantity), 0);
+            const taxAmount = subtotalAmount * 0.1; // 10% tax
+            const shippingAmount = 10; // Flat rate shipping
+            const discountAmount = checkoutCouponDiscount || 0;
+            const totalAmount = subtotalAmount + taxAmount + shippingAmount - discountAmount;
+            
+            // Save the shipping address if it's a new address (not selected from saved)
+            const select = document.getElementById('saved-addresses-select');
+            if (select.value === '') {
+                // New address was entered, save it
+                const newAddress = {
+                    name: document.getElementById('shipping-name').value.trim(),
+                    email: document.getElementById('shipping-email').value.trim(),
+                    phone: document.getElementById('shipping-phone').value.trim(),
+                    street: document.getElementById('shipping-street').value.trim(),
+                    apartment: document.getElementById('shipping-apartment').value.trim(),
+                    country: getCountryNameById(document.getElementById('shipping-country').value) || '',
+                    state: getStateNameById(document.getElementById('shipping-country').value, document.getElementById('shipping-state').value) || '',
+                    city: document.getElementById('shipping-city').value.trim(),
+                    postal: document.getElementById('shipping-postal').value.trim()
+                };
+                
+                // Add to saved addresses
+                const storageKey = getUserStorageKey('addresses');
+                const existingAddresses = localStorage.getItem(storageKey);
+                let addressList = existingAddresses ? JSON.parse(existingAddresses) : [];
+                addressList.push(newAddress);
+                localStorage.setItem(storageKey, JSON.stringify(addressList));
+                
+                // Sync with server
+                saveAddressesToServer();
+            }
+            
+            // Create order object
+            const orderNumber = 'ORD-' + Date.now() + '-' + Math.floor(Math.random() * 10000);
+            const orderDate = new Date().toISOString();
+            
+            const shippingAddress = {
+                name: document.getElementById('shipping-name').value.trim(),
+                email: document.getElementById('shipping-email').value.trim(),
+                phone: document.getElementById('shipping-phone').value.trim(),
+                street: document.getElementById('shipping-street').value.trim(),
+                apartment: document.getElementById('shipping-apartment').value.trim(),
+                country: getCountryNameById(document.getElementById('shipping-country').value) || '',
+                state: getStateNameById(document.getElementById('shipping-country').value, document.getElementById('shipping-state').value) || '',
+                city: document.getElementById('shipping-city').value.trim(),
+                postal: document.getElementById('shipping-postal').value.trim()
+            };
+            
+            const order = {
+                order_number: orderNumber,
+                order_id: Date.now(),
+                user_id: currentUser.id,
+                status: 'pending',
+                created_at: orderDate,
+                items: cart.map(item => ({
+                    product_id: item.id,
+                    name: item.name,
+                    image_url: item.image,
+                    quantity: item.quantity,
+                    size: item.size || null,
+                    color: item.color || null,
+                    price: item.price,
+                    subtotal: item.price * item.quantity
+                })),
+                subtotal: subtotalAmount,
+                tax: taxAmount,
+                shipping_cost: shippingAmount,
+                discount_amount: discountAmount,
+                total: totalAmount,
+                payment_method: 'credit_card',
+                shipping_address: shippingAddress,
+                notes: ''
+            };
+            
+            // Save order to localStorage
+            const ordersKey = getUserStorageKey('orders');
+            const existingOrders = localStorage.getItem(ordersKey);
+            let ordersList = existingOrders ? JSON.parse(existingOrders) : [];
+            ordersList.unshift(order); // Add to beginning of array
+            localStorage.setItem(ordersKey, JSON.stringify(ordersList));
+            
+            alert('Order placed successfully!\\n\\nOrder Number: ' + orderNumber + '\\n\\nNote: This is a demo. In a real application, payment would be processed.');
+            
+            // Clear cart and redirect
+            cart = [];
+            saveCart();
+            setTimeout(() => {
+                window.location.href = '/pages/account.html?tab=orders';
+            }, 1000);
+        }
+
+        function getCountryNameById(countryId) {
+            try {
+                const countries = window.csc.getAllCountries();
+                const country = countries.find(c => c.id == countryId);
+                return country ? country.name : '';
+            } catch (e) {
+                return '';
+            }
+        }
+
+        function getStateNameById(countryId, stateId) {
+            try {
+                const states = window.csc.getStatesOfCountry(countryId);
+                const state = states.find(s => s.id == stateId);
+                return state ? state.name : '';
+            } catch (e) {
+                return '';
+            }
+        }
+    </script>
+
+    <!-- 2FA Modal Overlay -->
+    <div id="twofa-modal-overlay" class="twofa-modal-overlay" style="display: none;">
+        <div class="twofa-modal">
+            <div class="twofa-modal-header">
+                <h2>Two-Factor Authentication</h2>
+                <button class="twofa-modal-close" id="twofa-modal-close" aria-label="Close">&times;</button>
+            </div>
+            <div class="twofa-modal-body">
+                <p id="twofa-email-message">Enter the 6-digit verification code sent to your email.</p>
+                <input 
+                    type="text" 
+                    id="twofa-code-input" 
+                    placeholder="000000" 
+                    maxlength="6" 
+                    pattern="\d{6}"
+                    class="form-control twofa-code-input"
+                    autocomplete="off"
+                    inputmode="numeric"
+                >
+                <p class="twofa-helper-text" style="text-align: center; font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">Demo: Enter 000000 to bypass 2FA</p>
+            </div>
+            <div class="twofa-modal-footer">
+                <button id="twofa-verify-btn" class="btn btn-primary" style="flex: 1;">Verify</button>
+                <button id="twofa-resend-btn" class="btn btn-secondary" style="flex: 1; margin-left: 0.5rem;">Resend Code</button>
+            </div>
+            <div id="twofa-error-message" class="twofa-error-message" style="display: none; color: #d32f2f; text-align: center; margin-top: 1rem; font-size: 0.9rem;"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Us - Velvet Vogue">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+    <title>Contact Us - Velvet Vogue</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('velvet-theme');
+            let theme = 'light';
+            
+            if (savedTheme === 'dark' || savedTheme === 'light') {
+                theme = savedTheme;
+            } else if (savedTheme === 'auto' || !savedTheme) {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="../index.html" class="logo">Velvet <span>Vogue</span></a>
+                
+                <!-- Hamburger Menu Button (Mobile Only) -->
+                <button id="hamburger-menu" aria-label="Toggle menu">
+                    <span></span>
+                </button>
+                
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/pages/shop.html">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html" class="active">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-icons">
+                    <button class="icon-btn" id="search-btn" title="Search">
+                        🔍
+                    </button>
+                    <button class="icon-btn" id="account-btn" title="My Account">
+                        👤
+                    </button>
+                    <button class="icon-btn" id="cart-btn" title="Shopping Cart">
+                        🛒
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Mobile Menu Overlay - Glass Pane (Outside Navigation) -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu Drawer - Navigation Pane (Outside Navigation) -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="/pages/shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 2rem;">
+        <div class="breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <span>Contact Us</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Get in Touch</h1>
+                <p>We'd love to hear from you. Have questions? We're here to help.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container" style="padding: 3rem 0;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;">
+            
+            <!-- Contact Information -->
+            <div>
+                <h2 style="margin-bottom: 1.5rem;">Contact Information</h2>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 0.5rem;">📍 Visit Us</h4>
+                    <p style="margin: 0;">123 Fashion Street<br>Style City, SC 12345<br>United States</p>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 0.5rem;">📱 Phone</h4>
+                    <p style="margin: 0;"><a href="tel:1-800-VELVET-1">1-800-VELVET-1</a><br>(Monday - Friday, 9AM - 6PM EST)</p>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 0.5rem;">📧 Email</h4>
+                    <p style="margin: 0;"><a href="mailto:info@velvetvogue.com">info@velvetvogue.com</a><br><a href="mailto:support@velvetvogue.com">support@velvetvogue.com</a></p>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h4 style="margin-bottom: 0.5rem;">⏰ Hours</h4>
+                    <p style="margin: 0;">Monday - Friday: 9:00 AM - 6:00 PM EST<br>Saturday: 10:00 AM - 4:00 PM EST<br>Sunday: Closed</p>
+                </div>
+
+                <!-- Social Links -->
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                    <h4 style="margin-bottom: 1rem;">Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" title="Facebook" style="background-color: var(--secondary-color); color: var(--white); width: 50px; height: 50px;">f</a>
+                        <a href="#" title="Twitter" style="background-color: var(--secondary-color); color: var(--white); width: 50px; height: 50px;">𝕏</a>
+                        <a href="#" title="Instagram" style="background-color: var(--secondary-color); color: var(--white); width: 50px; height: 50px;">📷</a>
+                        <a href="#" title="LinkedIn" style="background-color: var(--secondary-color); color: var(--white); width: 50px; height: 50px;">in</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div>
+                <div style="background-color: var(--white); padding: 2rem; border-radius: 8px; box-shadow: var(--shadow-sm);">
+                    <h2 style="margin-bottom: 1.5rem;">Send us a Message</h2>
+                    
+                    <form onsubmit="handleContactForm(event)">
+                        <div class="form-group">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" placeholder="John Doe" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="john@example.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Phone Number (Optional)</label>
+                            <input type="tel" class="form-control" placeholder="+1 (555) 123-4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Subject</label>
+                            <select class="form-control" required>
+                                <option value="">Select a subject...</option>
+                                <option value="product-inquiry">Product Inquiry</option>
+                                <option value="order-issue">Order Issue</option>
+                                <option value="shipping">Shipping Question</option>
+                                <option value="returns">Returns & Exchanges</option>
+                                <option value="feedback">General Feedback</option>
+                                <option value="partnership">Partnership Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" placeholder="Tell us how we can help..." required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="display: flex; align-items: flex-start; gap: 0.5rem;">
+                                <input type="checkbox" style="width: 18px; height: 18px; margin-top: 2px;" required>
+                                <span>I agree to be contacted regarding this inquiry</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Frequently Asked Questions</h2>
+                <p>Find answers to common questions</p>
+            </div>
+
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div class="accordion-item" style="background-color: var(--white); margin-bottom: 1rem; border-radius: 8px; box-shadow: var(--shadow-sm); overflow: hidden;">
+                    <div class="accordion-header" onclick="toggleAccordion(this)" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="margin: 0;">How long does shipping take?</h4>
+                        <span style="font-size: 1.5rem;">+</span>
+                    </div>
+                    <div class="accordion-content" style="display: none; padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                        <p style="margin: 0;">Standard shipping typically takes 5-7 business days. Express shipping is available for 2-3 business day delivery. Free shipping is provided on orders over $50.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item" style="background-color: var(--white); margin-bottom: 1rem; border-radius: 8px; box-shadow: var(--shadow-sm); overflow: hidden;">
+                    <div class="accordion-header" onclick="toggleAccordion(this)" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="margin: 0;">What is your return policy?</h4>
+                        <span style="font-size: 1.5rem;">+</span>
+                    </div>
+                    <div class="accordion-content" style="display: none; padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                        <p style="margin: 0;">We offer a 30-day return policy on all items. Items must be unused and in original condition with all tags attached. Simply contact our customer service team to initiate a return.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item" style="background-color: var(--white); margin-bottom: 1rem; border-radius: 8px; box-shadow: var(--shadow-sm); overflow: hidden;">
+                    <div class="accordion-header" onclick="toggleAccordion(this)" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="margin: 0;">Do you offer international shipping?</h4>
+                        <span style="font-size: 1.5rem;">+</span>
+                    </div>
+                    <div class="accordion-content" style="display: none; padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                        <p style="margin: 0;">Currently, we ship to select countries in North America and Europe. Shipping costs and delivery times vary by location. Contact us for international shipping inquiries.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item" style="background-color: var(--white); margin-bottom: 1rem; border-radius: 8px; box-shadow: var(--shadow-sm); overflow: hidden;">
+                    <div class="accordion-header" onclick="toggleAccordion(this)" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="margin: 0;">How do I use a coupon code?</h4>
+                        <span style="font-size: 1.5rem;">+</span>
+                    </div>
+                    <div class="accordion-content" style="display: none; padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                        <p style="margin: 0;">You can enter your coupon code at checkout. Simply add items to your cart, proceed to checkout, and enter the code in the "Coupon Code" field. The discount will be applied automatically.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item" style="background-color: var(--white); margin-bottom: 1rem; border-radius: 8px; box-shadow: var(--shadow-sm); overflow: hidden;">
+                    <div class="accordion-header" onclick="toggleAccordion(this)" style="padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                        <h4 style="margin: 0;">Is my payment information secure?</h4>
+                        <span style="font-size: 1.5rem;">+</span>
+                    </div>
+                    <div class="accordion-content" style="display: none; padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                        <p style="margin: 0;">Yes, we use SSL encryption and PCI-DSS compliance to protect your payment information. Your data is never stored on our servers and is processed securely through trusted payment gateways.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Velvet Vogue</h3>
+                    <p>We're dedicated to providing premium clothing and accessories that help you express your unique style and identity.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="LinkedIn">in</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/pages/shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns & Exchanges</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>📧 <a href="mailto:info@velvetvogue.com">info@velvetvogue.com</a></li>
+                        <li>📱 1-800-VELVET-1</li>
+                        <li>📍 123 Fashion Street, Style City, SC 12345</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Velvet Vogue. All rights reserved. | Designed for fashion-forward young adults</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

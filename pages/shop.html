@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Shop - Velvet Vogue's complete product catalog">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
+    <title>Shop - Velvet Vogue</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('velvet-theme');
+            let theme = 'light';
+            
+            if (savedTheme === 'dark' || savedTheme === 'light') {
+                theme = savedTheme;
+            } else if (savedTheme === 'auto' || !savedTheme) {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <a href="../index.html" class="logo">Velvet <span>Vogue</span></a>
+                
+                <!-- Hamburger Menu Button (Mobile Only) -->
+                <button id="hamburger-menu" aria-label="Toggle menu">
+                    <span></span>
+                </button>
+                
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/pages/shop.html" class="active">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+
+                <div class="header-icons">
+                    <button class="icon-btn" id="search-btn" title="Search">
+                        🔍
+                    </button>
+                    <button class="icon-btn" id="account-btn" title="My Account">
+                        👤
+                    </button>
+                    <button class="icon-btn" id="cart-btn" title="Shopping Cart">
+                        🛒
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay - Glass Pane (Outside Navigation) -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+    
+    <!-- Mobile Menu Drawer - Navigation Pane (Outside Navigation) -->
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="/pages/shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Search Bar (Initially Hidden) -->
+    <div id="search-bar" style="display: none; padding: 1rem 0; background-color: #f8f7f4; border-bottom: 1px solid #e0e0e0;">
+        <div class="container">
+            <input type="text" placeholder="Search products..." class="form-control" id="search-input">
+        </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 2rem;">
+        <div class="breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+                <a href="/pages/shop.html">Shop</a>
+            <span>/</span>
+            <span id="current-category">All Products</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container" style="display: grid; grid-template-columns: 250px 1fr; gap: 2rem; padding: 2rem 0;">
+        
+        <!-- Sidebar Filters -->
+        <aside>
+            <!-- Mobile Filter Toggle Button -->
+            <button id="filter-toggle-btn" class="filter-toggle-btn" style="display: none;">
+                <span>🔽 Filters</span>
+            </button>
+            
+            <!-- Filters Container -->
+            <div id="filters-container">
+                <!-- Category Filter -->
+                <div class="filter-section">
+                <h3 class="filter-title">Categories</h3>
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <input type="radio" name="category" value="all" checked onchange="filterProducts()">
+                        All Products
+                    </label>
+                    <label class="filter-label">
+                        <input type="radio" name="category" value="casual" onchange="filterProducts()">
+                        Casual Wear
+                    </label>
+                    <label class="filter-label">
+                        <input type="radio" name="category" value="formal" onchange="filterProducts()">
+                        Formal Wear
+                    </label>
+                    <label class="filter-label">
+                        <input type="radio" name="category" value="accessories" onchange="filterProducts()">
+                        Accessories
+                    </label>
+                </div>
+            </div>
+
+            <!-- Gender Filter -->
+            <div class="filter-section">
+                <h3 class="filter-title">Gender</h3>
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <input type="checkbox" name="gender" value="male" onchange="filterProducts()">
+                        Men
+                    </label>
+                    <label class="filter-label">
+                        <input type="checkbox" name="gender" value="female" onchange="filterProducts()">
+                        Women
+                    </label>
+                    <label class="filter-label">
+                        <input type="checkbox" name="gender" value="unisex" onchange="filterProducts()">
+                        Unisex
+                    </label>
+                </div>
+            </div>
+
+            <!-- Price Filter -->
+            <div class="filter-section">
+                <h3 class="filter-title">Price Range</h3>
+                <div class="filter-group">
+                    <label class="filter-label">
+                        <input type="radio" name="price" value="all" checked onchange="filterProducts()">
+                        All Prices
+                    </label>
+                    <label class="filter-label">
+                        <input type="radio" name="price" value="0-50" onchange="filterProducts()">
+                        Under $50
+                    </label>
+                    <label class="filter-label">
+                        <input type="radio" name="price" value="50-100" onchange="filterProducts()">
+                        $50 - $100
+                    </label>
+                    <label class="filter-label">
+                        <input type="radio" name="price" value="100-200" onchange="filterProducts()">
+                        $100 - $200
+                    </label>
+                    <label class="filter-label">
+                        <input type="radio" name="price" value="200+" onchange="filterProducts()">
+                        Over $200
+                    </label>
+                </div>
+            </div>
+
+            <!-- Sort Options -->
+            <div class="filter-section">
+                <h3 class="filter-title">Sort By</h3>
+                <div class="filter-group">
+                    <select class="form-control" onchange="sortProducts(this.value)">
+                        <option value="newest">Newest First</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Top Rated</option>
+                        <option value="name">Name A-Z</option>
+                    </select>
+                </div>
+            </div>
+            </div>
+
+            <!-- Clear Filters -->
+            <button id="clear-filters-btn" class="btn btn-outline btn-block" onclick="clearFilters()">Clear Filters</button>
+        </aside>
+
+        <!-- Products Section -->
+        <main>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <h2>Products</h2>
+                <p style="color: var(--text-light);" id="product-count">Showing 12 products</p>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="products-loading" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p class="loading-text">Loading products...</p>
+            </div>
+
+            <div class="products-grid" id="products-container">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+
+            <!-- No Products Message -->
+            <div id="no-products" style="text-align: center; padding: 3rem 0; display: none;">
+                <p style="font-size: 1.1rem; color: var(--text-light);">No products found matching your filters.</p>
+                <button class="btn btn-primary mt-2" onclick="clearFilters()">Clear Filters</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Velvet Vogue</h3>
+                    <p>We're dedicated to providing premium clothing and accessories that help you express your unique style and identity.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">f</a>
+                        <a href="#" title="Twitter">𝕏</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="LinkedIn">in</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="/pages/shop.html">Shop</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns & Exchanges</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>📧 <a href="mailto:info@velvetvogue.com">info@velvetvogue.com</a></li>
+                        <li>📱 1-800-VELVET-1</li>
+                        <li>📍 123 Fashion Street, Style City, SC 12345</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Velvet Vogue. All rights reserved. | Designed for fashion-forward young adults</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

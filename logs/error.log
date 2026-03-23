@@ -1,0 +1,173 @@
+[03-Mar-2026 06:59:01 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:01 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(331): ProductAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:01 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:03 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:03 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(331): ProductAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:05 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:05 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(331): ProductAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:05 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:09 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:09 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(331): ProductAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:10 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:10 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/products.php(331): ProductAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 06:59:10 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 07:00:22 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 07:00:27 UTC] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php:46
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/config.php(61): Database->__construct()
+#1 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(13): Database::getInstance()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/auth.php(256): AuthAPI->__construct()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/config.php on line 46
+[03-Mar-2026 07:02:24 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:02:24 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:02:34 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:02:34 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:02:34 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:02:50 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:03:02 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:07:12 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:07:12 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:07:12 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:07:18 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:07:34 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:07:39 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:27:00 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:27:00 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:27:00 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:27:03 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:27:08 UTC] Access denied for user 'root'@'localhost' (using password: NO)
+[03-Mar-2026 07:38:50 UTC] Access denied for user 'root'@'localhost'
+[03-Mar-2026 07:38:50 UTC] Access denied for user 'root'@'localhost'
+[03-Mar-2026 07:38:53 UTC] Access denied for user 'root'@'localhost'
+[03-Mar-2026 07:38:53 UTC] Access denied for user 'root'@'localhost'
+[03-Mar-2026 07:38:53 UTC] Access denied for user 'root'@'localhost'
+[03-Mar-2026 07:39:12 UTC] Access denied for user 'root'@'localhost'
+[03-Mar-2026 07:39:17 UTC] Access denied for user 'root'@'localhost'
+[03-Mar-2026 07:40:18 UTC] Access denied for user 'root'@'localhost'
+[05-Mar-2026 04:33:17 UTC] [2FA] Code for jkd@jkd.com: 819107
+[05-Mar-2026 04:34:53 UTC] [2FA] Code for chandupha@gmail.com: 369883
+[05-Mar-2026 04:37:39 UTC] [2FA] Code for chandupha@gmail.com: 269679
+[05-Mar-2026 04:37:43 UTC] [2FA] Code for chandupha@gmail.com: 455727
+[05-Mar-2026 04:43:41 UTC] [2FA] Code for jkd@jkd.com: 391702
+[05-Mar-2026 04:48:44 UTC] [2FA] Code for jkd@jkd.com: 279279
+[05-Mar-2026 04:48:55 UTC] [2FA] Code for jkd@jkd.com: 553290
+[05-Mar-2026 05:34:24 UTC] OAuth Error: Invalid OAuth state
+[05-Mar-2026 05:36:48 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function curl_init() in /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php:128
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php(81): OAuthHandler->getGoogleToken()
+#1 /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php(66): OAuthHandler->handleGoogleCallback()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/oauth-callback.php(23): OAuthHandler->handleCallback()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php on line 128
+[05-Mar-2026 05:37:02 UTC] OAuth Error: Invalid OAuth state
+[05-Mar-2026 05:37:14 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function curl_init() in /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php:128
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php(81): OAuthHandler->getGoogleToken()
+#1 /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php(66): OAuthHandler->handleGoogleCallback()
+#2 /home/chandupha/Documents/wdd/velvetvogue/api/oauth-callback.php(23): OAuthHandler->handleCallback()
+#3 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php on line 128
+[05-Mar-2026 05:38:36 UTC] OAuth Error: Invalid OAuth state
+[05-Mar-2026 05:38:45 UTC] PHP Fatal error:  Uncaught ArgumentCountError: mysqli_stmt::fetch() expects exactly 0 arguments, 1 given in /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php:236
+Stack trace:
+#0 /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php(236): mysqli_stmt->fetch()
+#1 /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php(93): OAuthHandler->findOrCreateOAuthUser()
+#2 /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php(66): OAuthHandler->handleGoogleCallback()
+#3 /home/chandupha/Documents/wdd/velvetvogue/api/oauth-callback.php(23): OAuthHandler->handleCallback()
+#4 {main}
+  thrown in /home/chandupha/Documents/wdd/velvetvogue/includes/oauth-handler.php on line 236
+[05-Mar-2026 05:39:57 UTC] OAuth Error: Invalid OAuth state
+[05-Mar-2026 05:40:06 UTC] PHP Warning:  Undefined array key "pending_checkout" in /home/chandupha/Documents/wdd/velvetvogue/api/oauth-callback.php on line 40
+[05-Mar-2026 08:43:00 UTC] Cart getCart - User ID: 5
+[05-Mar-2026 08:43:04 UTC] Cart getCart - User ID: 5
+[05-Mar-2026 08:43:34 UTC] Cart getCart - User ID: 5
+[05-Mar-2026 08:44:04 UTC] Cart getCart - User ID: 5
+[05-Mar-2026 09:15:44 UTC] saveCart: Called. Session: {"oauth_provider":"google","user_id":8,"email":"chandupha@gmail.com","name":"Chandupa Herath","role":"customer","login_time":1772702134,"first_name":"Chandupa","last_name":"Herath"}
+[05-Mar-2026 09:15:44 UTC] saveCart: Cookies: user_id=8
+[05-Mar-2026 09:15:44 UTC] saveCart: User ID: 8, Cart items: 1
+[05-Mar-2026 09:15:44 UTC] saveCart: SUCCESS for user 8

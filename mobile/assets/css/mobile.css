@@ -1,0 +1,472 @@
+/* ============================================================
+   VELVET VOGUE - MOBILE OPTIMIZED STYLESHEET
+   Optimized specifically for phones (< 768px)
+   ============================================================ */
+
+:root {
+    --primary-color: #8B4B9A;
+    --secondary-color: #9B6BA8;
+    --accent-color: #E8B4D4;
+    --light-bg: #F9F7FB;
+    --border-color: #E0E0E0;
+    --white: #ffffff;
+    --text-dark: #2C2C2C;
+    --text-light: #666666;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+[data-theme='dark'] {
+    --light-bg: #1a1a1a;
+    --border-color: #333333;
+    --white: #2a2a2a;
+    --text-dark: #f0f0f0;
+    --text-light: #cccccc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 70px;
+}
+
+/* ============================================================
+   MOBILE HEADER
+   ============================================================ */
+
+.mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.mobile-header .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 1rem;
+}
+
+.mobile-header .logo {
+    flex: 1;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text-dark);
+    transition: var(--transition);
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:active {
+    opacity: 0.7;
+}
+
+/* ============================================================
+   MOBILE SEARCH
+   ============================================================ */
+
+.mobile-search {
+    position: sticky;
+    top: 53px;
+    z-index: 99;
+    background-color: var(--white);
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.mobile-search input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+.mobile-search input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#search-close-mobile {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+
+.mobile-menu {
+    position: fixed;
+    top: 53px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--white);
+    z-index: 98;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    flex: 1;
+}
+
+.mobile-menu li {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.mobile-menu a {
+    display: block;
+    padding: 1rem 1.5rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.mobile-menu a:active {
+    background-color: var(--light-bg);
+}
+
+.menu-footer {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.menu-link {
+    display: block;
+    padding: 0.75rem 0;
+    text-align: center;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* ============================================================
+   HERO SECTION - MOBILE
+   ============================================================ */
+
+.hero-mobile {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.hero-mobile h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.hero-mobile p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+}
+
+/* ============================================================
+   SECTION - MOBILE
+   ============================================================ */
+
+.section-mobile {
+    padding: 1.5rem 1rem;
+    border-bottom: 8px solid var(--light-bg);
+}
+
+.section-mobile h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* ============================================================
+   PRODUCTS GRID - MOBILE
+   ============================================================ */
+
+.products-grid-mobile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.product-card-mobile {
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.product-card-mobile:active {
+    opacity: 0.8;
+}
+
+.product-image-mobile {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    background-color: var(--light-bg);
+}
+
+.product-info-mobile {
+    padding: 0.75rem;
+}
+
+.product-name-mobile {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product-price-mobile {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.product-rating-mobile {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 0.25rem;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:active {
+    opacity: 0.9;
+    background-color: #7A3B8A;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-outline:active {
+    background-color: var(--light-bg);
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+/* ============================================================
+   MOBILE BOTTOM NAVIGATION
+   ============================================================ */
+
+.mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background-color: var(--white);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 101;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    color: var(--text-light);
+    text-decoration: none;
+    flex: 1;
+    height: 100%;
+    font-size: 0.75rem;
+    min-width: 60px;
+    position: relative;
+    transition: var(--transition);
+}
+
+.nav-item:active {
+    color: var(--primary-color);
+}
+
+.nav-item .icon {
+    font-size: 1.5rem;
+}
+
+.nav-item .label {
+    font-weight: 500;
+}
+
+.nav-item .badge {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* ============================================================
+   MOBILE FOOTER
+   ============================================================ */
+
+.mobile-footer {
+    background-color: var(--light-bg);
+    padding: 1.5rem 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-section h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.footer-section p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+    justify-content: center;
+}
+
+.footer-links a {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 1rem;
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+.container {
+    max-width: 100%;
+    padding: 0 1rem;
+}
+
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+
+[data-theme='dark'] .mobile-header,
+[data-theme='dark'] .mobile-search,
+[data-theme='dark'] .mobile-menu,
+[data-theme='dark'] .product-card-mobile,
+[data-theme='dark'] .mobile-bottom-nav {
+    background-color: #2a2a2a;
+}
+
+[data-theme='dark'] .mobile-header,
+[data-theme='dark'] .mobile-search,
+[data-theme='dark'] .mobile-menu {
+    border-bottom-color: #444;
+}
+
+[data-theme='dark'] .mobile-bottom-nav {
+    border-top-color: #444;
+}
+
+[data-theme='dark'] .hero-mobile {
+    background: linear-gradient(135deg, #6A3A7A 0%, #7A4A8A 100%);
+}
