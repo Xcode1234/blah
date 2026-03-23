@@ -1,0 +1,9 @@
+{
+  http_port 8080
+  https_port 9443
+}
+
+velvetvogue.k {
+  tls /home/chandupha/Documents/wdd/velvetvogue/velvetvogue.k.pem /home/chandupha/Documents/wdd/velvetvogue/velvetvogue.k-key.pem
+  reverse_proxy localhost:8000
+}

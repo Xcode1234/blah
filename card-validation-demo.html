@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Validation Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        label {
+            display: block;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        #card-type-icon {
+            font-size: 2rem;
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        @keyframes cardFlip {
+            0% { transform: perspective(1000px) rotateY(0deg); }
+            50% { transform: perspective(1000px) rotateY(90deg); }
+            100% { transform: perspective(1000px) rotateY(0deg); }
+        }
+        
+        #card-type-icon.card-flip {
+            animation: cardFlip 0.5s ease-in-out;
+        }
+        
+        #card-validation-message {
+            color: #666;
+            margin-top: 8px;
+            display: block;
+            font-size: 13px;
+            min-height: 1.2em;
+        }
+        
+        .test-cards {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .test-cards h3 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .test-card {
+            background: white;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid #667eea;
+        }
+        
+        .test-card:hover {
+            background: #f9f9f9;
+            transform: translateX(4px);
+        }
+        
+        .test-card:last-child {
+            margin-bottom: 0;
+        }
+        
+        .test-card-number {
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .test-card-type {
+            color: #999;
+            margin-top: 2px;
+        }
+        
+        .success { border-left-color: #4caf50; }
+        .error { border-left-color: #f44336; }
+        .warning { border-left-color: #ff9800; }
+        
+        .info-box {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            color: #1565c0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💳 Card Validation Demo</h1>
+        <p class="subtitle">Real-time credit card detection with animated logos</p>
+        
+        <div class="info-box">
+            👉 Try entering a card number below or click a test card to see live detection!
+        </div>
+        
+        <form>
+            <div class="form-group">
+                <label for="card-number">Card Number</label>
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="card-number" 
+                        placeholder="1234 5678 9012 3456" 
+                        maxlength="19"
+                        oninput="detectCardType()"
+                    >
+                    <div id="card-type-icon"></div>
+                </div>
+                <small id="card-validation-message" style="color: #666; display: block; margin-top: 8px; min-height: 1.2em;"></small>
+            </div>
+        </form>
+        
+        <div class="test-cards">
+            <h3>📋 Test Cards (Click to Auto-fill)</h3>
+            
+            <div class="test-card success" onclick="fillCard('4532015112830366')">
+                <div class="test-card-number">4532 0151 1283 0366</div>
+                <div class="test-card-type">Visa (16 digits)</div>
+            </div>
+            
+            <div class="test-card success" onclick="fillCard('5425233010103442')">
+                <div class="test-card-number">5425 2330 1010 3442</div>
+                <div class="test-card-type">Mastercard (16 digits)</div>
+            </div>
+            
+            <div class="test-card success" onclick="fillCard('378282246310005')">
+                <div class="test-card-number">3782 822463 10005</div>
+                <div class="test-card-type">American Express (15 digits)</div>
+            </div>
+            
+            <div class="test-card success" onclick="fillCard('6011111111111117')">
+                <div class="test-card-number">6011 1111 1111 1117</div>
+                <div class="test-card-type">Discover (16 digits)</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function detectCardType() {
+            const cardInput = document.getElementById('card-number');
+            const cardIcon = document.getElementById('card-type-icon');
+            const validationMsg = document.getElementById('card-validation-message');
+            
+            // Get card number and remove spaces
+            let cardNumber = cardInput.value.replace(/\s/g, '');
+            
+            // Format card number with spaces (4 digits per section)
+            let formattedNumber = cardNumber.replace(/(\d{4})(?=\d)/g, '$1 ');
+            cardInput.value = formattedNumber;
+            
+            // Detect card type based on first digits
+            let cardType = null;
+            let expectedLength = 16;
+            let cardLogoUrl = '';
+            
+            if (!cardNumber) {
+                cardIcon.style.opacity = '0';
+                cardIcon.innerHTML = '';
+                validationMsg.textContent = '';
+                validationMsg.style.color = '#666';
+                return;
+            }
+            
+            // Visa: starts with 4, length 16
+            if (/^4[0-9]{0,}/.test(cardNumber)) {
+                cardType = 'Visa';
+                expectedLength = 16;
+                cardLogoUrl = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 80%22%3E%3Crect fill=%221434CB%22 width=%22200%22 height=%2280%22/%3E%3Ctext x=%22100%22 y=%2250%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2224%22 font-weight=%22bold%22 fill=%22white%22%3EVISA%3C/text%3E%3C/svg%3E';
+            }
+            // Mastercard: starts with 5[1-5] or 2[2-7], length 16
+            else if (/^(5[1-5]|2[2-7])[0-9]{0,}/.test(cardNumber)) {
+                cardType = 'Mastercard';
+                expectedLength = 16;
+                cardLogoUrl = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 80%22%3E%3Crect fill=%22white%22 width=%22200%22 height=%2280%22/%3E%3Ccircle cx=%2270%22 cy=%2240%22 r=%2225%22 fill=%22%23EB001B%22/%3E%3Ccircle cx=%22130%22 cy=%2240%22 r=%2225%22 fill=%22%23FF5F00%22/%3E%3C/svg%3E';
+            }
+            // American Express: starts with 34 or 37, length 15
+            else if (/^3[47][0-9]{0,}/.test(cardNumber)) {
+                cardType = 'American Express';
+                expectedLength = 15;
+                cardLogoUrl = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 80%22%3E%3Crect fill=%22006FCF%22 width=%22200%22 height=%2280%22/%3E%3Ctext x=%22100%22 y=%2250%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2220%22 font-weight=%22bold%22 fill=%22white%22%3EAMEX%3C/text%3E%3C/svg%3E';
+            }
+            // Discover: starts with 6, length 16
+            else if (/^6[0-9]{0,}/.test(cardNumber)) {
+                cardType = 'Discover';
+                expectedLength = 16;
+                cardLogoUrl = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 80%22%3E%3Crect fill=%22FF6000%22 width=%22200%22 height=%2280%22/%3E%3Ctext x=%22100%22 y=%2250%22 text-anchor=%22middle%22 font-family=%22Arial%22 font-size=%2220%22 font-weight=%22bold%22 fill=%22white%22%3EDISCOVER%3C/text%3E%3C/svg%3E';
+            }
+            
+            // Update card type icon with logo image
+            if (cardType) {
+                const img = document.createElement('img');
+                img.src = cardLogoUrl;
+                img.alt = cardType + ' logo';
+                img.style.maxHeight = '40px';
+                img.style.maxWidth = '60px';
+                img.style.objectFit = 'contain';
+                cardIcon.innerHTML = '';
+                cardIcon.appendChild(img);
+                cardIcon.style.opacity = '1';
+                cardIcon.classList.add('card-flip');
+                setTimeout(() => {
+                    cardIcon.classList.remove('card-flip');
+                }, 500);
+            } else {
+                cardIcon.style.opacity = '0';
+                cardIcon.innerHTML = '';
+            }
+            
+            // Validate card length
+            if (cardNumber.length === expectedLength) {
+                validationMsg.textContent = `✓ Valid ${cardType} card (${expectedLength} digits)`;
+                validationMsg.style.color = '#4caf50';
+            } else if (cardNumber.length < expectedLength) {
+                if (cardType) {
+                    validationMsg.textContent = `${cardType} requires ${expectedLength} digits (${cardNumber.length}/${expectedLength})`;
+                    validationMsg.style.color = '#ff9800';
+                } else {
+                    validationMsg.textContent = '';
+                    validationMsg.style.color = '#666';
+                }
+            } else {
+                validationMsg.textContent = `✗ Card number too long (${cardNumber.length} digits)`;
+                validationMsg.style.color = '#f44336';
+            }
+        }
+        
+        function fillCard(cardNumber) {
+            const cardInput = document.getElementById('card-number');
+            cardInput.value = cardNumber;
+            cardInput.focus();
+            detectCardType();
+        }
+    </script>
+</body>
+</html>
